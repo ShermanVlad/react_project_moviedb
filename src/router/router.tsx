@@ -5,8 +5,8 @@ import MovieInfoPage from "../pages/movieInfoPage/MovieInfoPage";
 
 const router = createBrowserRouter([
     {path: '', element: <MainLayout/>, children: [
-            {path: 'aaa', element: <MoviesPage/>},
-            { path: 'aaaa', element: <MovieInfoPage/>}
+            {index: true, element: <MoviesPage/>},
+            // { path: 'aaaa', element: <MovieInfoPage/>}
         ]}
 ])
 

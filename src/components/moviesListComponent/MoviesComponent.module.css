@@ -1,0 +1,10 @@
+.mainDiv {
+    margin:14vh 0 7vh 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80vw;
+    border: 5px red  solid;
+}
