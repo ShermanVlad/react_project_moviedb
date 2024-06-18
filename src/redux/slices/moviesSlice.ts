@@ -28,7 +28,6 @@ const getAllMovies = createAsyncThunk(
             return thunkAPI.fulfillWithValue(response?.data);
         } catch (e) {
             const error = e as AxiosError;
-            console.log(error);
             return thunkAPI.rejectWithValue(error.response?.data)
         }
     }
@@ -47,8 +46,6 @@ export const moviesSlice = createSlice({
     },
     extraReducers: builder =>
         builder
-            .addCase(getAllMovies.rejected, (state, action) => {
-            })
             .addCase(getAllMovies.fulfilled, (state, action) => {
                 if (action.payload) {
                     const {results, page, total_pages} = action.payload;

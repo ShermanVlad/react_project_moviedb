@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './headerComponent.module.css'
+import styles from './Header.module.css'
 import {Link} from "@mui/material";
 
-const HeaderComponent = () => {
+const Header = () => {
     return (
         <div className={styles.headerDiv}>
             <Link key={'/movies'} className={styles.linkTag}><h3>Sherman films</h3></Link>
@@ -14,4 +14,4 @@ const HeaderComponent = () => {
     );
 };
 
-export default HeaderComponent;
+export default Header;

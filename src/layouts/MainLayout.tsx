@@ -1,12 +1,17 @@
 import {Outlet} from "react-router";
-import HeaderComponent from "../components/headerComponent/HeaderComponent";
+import Header from "../components/Header/Header";
 import React from "react";
+import styles from './MainLayout.module.css'
+import Genres from "../components/Genres/Genres";
 
 const MainLayout = () => {
     return (
         <div>
-            <HeaderComponent/>
-            <Outlet/>
+            <Header/>
+            <div  className={styles.mainLayDiv}>
+                <Genres/>
+                <Outlet/>
+            </div>
         </div>
     );
 };
