@@ -2,6 +2,7 @@ import {IMovie} from "../../models/IMovie";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {moviesService} from "../../services/moviesService/movies.api.service";
 import {AxiosError} from "axios";
+import {IGenre} from "../../models/IGenre";
 
 type MoviesSliceType = {
     movies: IMovie[];
@@ -9,6 +10,7 @@ type MoviesSliceType = {
     searchPage: null | number;
     isLoaded: boolean;
     total_pages: null | number
+    genres: IGenre[]
 }
 
 const initialState: MoviesSliceType = {
@@ -16,7 +18,8 @@ const initialState: MoviesSliceType = {
     currentPage: 1,
     searchPage: null,
     isLoaded: false,
-    total_pages: null
+    total_pages: null,
+    genres: [],
 }
 
 const getAllMovies = createAsyncThunk(

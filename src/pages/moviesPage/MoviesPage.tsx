@@ -31,7 +31,7 @@ const MoviesPage = () => {
             <MoviesList/>
             <div className={styles.paginDiv}>
                 <Pagination page={currentPage}
-                            count={total_pages ? total_pages : 1}
+                            count={total_pages ? 100 : 1}
                             onChange={(_, page: number) => changePage(page)}
                             shape={"rounded"}
                             color={"primary"}

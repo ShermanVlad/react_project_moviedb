@@ -1,4 +1,3 @@
-import React from 'react';
 import {useAppSelector} from "../../redux/store";
 import MovieListCard from "../MovieListCard/MovieListCard";
 import styles from './MoviesList.module.css'

@@ -1,13 +1,12 @@
 import {axiosInstance} from "../../axios/axios";
 import {urls} from "../../constants/urls";
 import {IMoviePaginated} from "../../models/IMoviePaginated";
-import {AxiosError, AxiosResponse} from "axios";
-import {IMovie} from "../../models/IMovie";
+import {AxiosError} from "axios";
 
 const moviesService = {
     getMovies: async (page: number) => {
         try {
-            const responce = axiosInstance.get<IMoviePaginated>(urls.getAllMovies, {params: {page: page}});
+            const responce = await axiosInstance.get<IMoviePaginated>(urls.getAllMovies, {params: {page: page}});
             return responce;
         } catch (e){
             const error = e as AxiosError;

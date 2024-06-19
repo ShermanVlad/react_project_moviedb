@@ -8,11 +8,10 @@ type IProps={
 
 const PosterPreview:FC<IProps> = ({posterPath, movieTitle}) => {
     const posterBaseURL = `https://image.tmdb.org/t/p/w300${posterPath}`
-    const title = movieTitle
 
     return (
         <div className={styles.posterDiv}>
-            <img src={posterBaseURL} alt={title} className={styles.posterImg}/>
+            <img src={posterBaseURL} alt={movieTitle} className={styles.posterImg}/>
         </div>
     );
 };

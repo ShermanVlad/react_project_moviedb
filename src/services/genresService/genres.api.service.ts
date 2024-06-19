@@ -1,7 +1,6 @@
 import {axiosInstance} from "../../axios/axios";
 import {urls} from "../../constants/urls";
 import {AxiosError} from "axios";
-import {IGenre} from "../../models/IGenre";
 import {IGenres} from "../../models/IGenres";
 
 const genresService = {

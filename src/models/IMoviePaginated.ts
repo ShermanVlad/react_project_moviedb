@@ -4,5 +4,6 @@ export interface IMoviePaginated{
     page: number,
     results: IMovie[],
     "total_pages": number,
-    "total_results": number
+    "total_results": number,
+    "genre_ids": number[]
 }

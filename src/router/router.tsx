@@ -1,12 +1,12 @@
 import {createBrowserRouter} from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import MoviesPage from "../pages/moviesPage/MoviesPage";
-import MovieInfoPage from "../pages/movieInfoPage/MovieInfoPage";
+import MovieInfo from "../components/MovieInfo/MovieInfo";
 
 const router = createBrowserRouter([
     {path: '', element: <MainLayout/>, children: [
             {index: true, element: <MoviesPage/>},
-            // { path: 'aaaa', element: <MovieInfoPage/>}
+            { path: '/movieInfo/:id', element: <MovieInfo/>}
         ]}
 ])
 
