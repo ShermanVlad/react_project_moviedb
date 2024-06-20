@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: lightblue;
-    /*position: fixed;*/
 
     .linkTag {
         width: 10vw;
@@ -23,5 +22,11 @@
             text-decoration: none;
             width: auto;
         }
+    }
+
+    input{
+        height: 2.5vh;
+        width: 10vw;
+        border-radius: 10px;
     }
 }

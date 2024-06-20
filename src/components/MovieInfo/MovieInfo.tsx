@@ -6,6 +6,7 @@ import styles from './MovieInfo.module.css'
 import {Link} from 'react-router-dom';
 import {Rating} from "@mui/material";
 import GenreBadge from "../GenreBadge/GenreBadge";
+import StarsRating from "../StarsRating/StarsRating";
 
 const MovieInfo: FC = () => {
 
@@ -42,32 +43,35 @@ const MovieInfo: FC = () => {
                 <div className={styles.posterDiv}>
                     <img src={posterBaseURL} alt={title}/>
                 </div>
+
                 <div className={styles.infoDiv}>
-                    <p>{title}</p>
-                    <p><a href="https://www.imdb.com/">IMDb</a>: {vote_average}</p>
-                    <p>Release date: {release_date}</p>
-                    <p>Language: {original_language}</p>
+                    <h3>{title}</h3>
+                    <div style={{display: 'flex'}}>
+                        <StarsRating rating={vote_average.toFixed(1)}/>{vote_average.toFixed(1)}
+                    </div>
                     <div className={styles.badgesDiv}>{
                         genre_ids?.map((id: number) => {
                             const genre = findMovieGenre(id);
                             return genre ? (
-                                <Link key={id} to={`/movies/${id}`}>
-                                    <div key={id} style={{marginLeft:"0.3vw"}}>{genre.name}</div>
+                                <Link key={id} to={`/movies/${id}`} className={styles.link}>
+                                    <div key={id} style={{marginRight: "0.3vw"}}>{genre.name}</div>
                                 </Link>
                             ) : null
                         })
                     }</div>
-                    <p></p>
-                    <p></p>
+
+                    <p><b>Release date: </b>{release_date}</p>
+                    <p><b>Language: </b> {original_language.toUpperCase()}</p>
                 </div>
             </div>
 
-            <div>
-                {
-                    overview
-                }
-                <div>
-                    <img src={backdropBaseURL} alt={title+'_backdrop'}/>
+            <div className={styles.overviewAndImg}>
+                <div className={styles.overviewDiv}>
+                    {/*<h3>Film `{title}` is about:</h3>*/}
+                    <p>{overview}</p>
+                </div>
+                <div className={styles.backdropDiv}>
+                    <img src={backdropBaseURL} alt={title + '_backdrop'}/>
                 </div>
             </div>
         </div>

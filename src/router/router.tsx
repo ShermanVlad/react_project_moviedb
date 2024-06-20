@@ -6,7 +6,9 @@ import MovieInfo from "../components/MovieInfo/MovieInfo";
 const router = createBrowserRouter([
     {path: '', element: <MainLayout/>, children: [
             {index: true, element: <MoviesPage/>},
-            { path: '/movieInfo/:id', element: <MovieInfo/>}
+            {path: 'movieInfo/:id', element: <MovieInfo/>, children: [
+                    {path: ':genreId', element: <MoviesPage/>}
+                ]}
         ]}
 ])
 

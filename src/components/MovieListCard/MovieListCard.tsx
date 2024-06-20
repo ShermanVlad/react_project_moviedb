@@ -3,7 +3,7 @@ import {IMovie} from "../../models/IMovie";
 import styles from './MovieListCard.module.css'
 import PosterPreview from "../PosterPreview/PosterPreview";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import GenreBadge from '../GenreBadge/GenreBadge';
 import {genresActions} from "../../redux/slices/genresSlice";
 
@@ -32,7 +32,7 @@ const MovieListCard: FC<IProps> = ({movie}) => {
             <Link to={`/movieInfo/${id}`} className={styles.link} state={{...movie}}>
             <div className={styles.genreBadgesDiv}>
                 {
-                    genre_ids.map(id=><GenreBadge genre={findMovieGenre(id)} key={id}/>)
+                    genre_ids.map(id=><NavLink to={`/movies/${id}`} style={{textDecoration: "none"}}><GenreBadge genre={findMovieGenre(id)} key={id}/></NavLink>)
                 }
             </div>
             <PosterPreview posterPath={poster_path} movieTitle={title}/>
