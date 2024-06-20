@@ -9,7 +9,7 @@ type MoviesSliceType = {
     currentPage: number;
     searchPage: null | number;
     isLoaded: boolean;
-    total_pages: null | number
+    total_pages: null | number;
     genres: IGenre[]
 }
 

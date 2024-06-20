@@ -1,0 +1,46 @@
+.movieInfoMain {
+    width: 100%;
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: black 1px solid;
+}
+
+.posterAndInfo {
+    width: 50%;
+    height: 50vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px black solid;
+}
+
+.posterDiv {
+    width: 30%;
+    border: black 1px solid;
+    align-items: center;
+
+    /*display: flex;*/
+
+    img {
+        width: 100%;
+    }
+}
+
+.infoDiv {
+    padding-left: 1vw;
+    width: 60%;
+    height: 45vh;
+    border: black 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /*align-items: center;*/
+}
+
+.badgesDiv {
+    display: flex;
+    width: 100%;
+}
