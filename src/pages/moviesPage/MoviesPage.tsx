@@ -7,23 +7,23 @@ import styles from './MoviesPage.module.css'
 
 const MoviesPage = () => {
 
-    const {currentPage, searchPage, movies, total_pages, isLoaded} = useAppSelector(state => state.movieSlice)
+    const {currentPage, currentSearchPage, movies, total_pages} = useAppSelector(state => state.movieSlice)
 
     let dispatch = useAppDispatch()
 
-    const changePage = (page: number) => {
+    const reloadPage = (page: number) => {
         dispatch(moviesActions.changeCurrentPage(page))
     }
 
     useEffect(() => {
-        dispatch(moviesActions.getAllMovies(searchPage || 1))
-    }, [searchPage]);
+        dispatch(moviesActions.getAllMovies(currentSearchPage || 1))
+    }, [currentSearchPage]);
     return (
         <div className={styles.MoviesPageDiv}>
             <div className={styles.paginDiv}>
                 <Pagination page={currentPage}
-                            count={total_pages ? 100 : 1}
-                            onChange={(_, page: number) => changePage(page)}
+                            count={total_pages ? 500 : 1}
+                            onChange={(_, page: number) => reloadPage(page)}
                             shape={"rounded"}
                             color={"primary"}
                 />
@@ -31,8 +31,8 @@ const MoviesPage = () => {
             <MoviesList/>
             <div className={styles.paginDiv}>
                 <Pagination page={currentPage}
-                            count={total_pages ? 100 : 1}
-                            onChange={(_, page: number) => changePage(page)}
+                            count={total_pages ? 500 : 1}
+                            onChange={(_, page: number) => reloadPage(page)}
                             shape={"rounded"}
                             color={"primary"}
                 />
