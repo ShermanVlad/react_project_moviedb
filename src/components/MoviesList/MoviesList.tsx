@@ -1,14 +1,17 @@
 import {useAppSelector} from "../../redux/store";
 import MovieListCard from "../MovieListCard/MovieListCard";
 import styles from './MoviesList.module.css'
-const MoviesList = () => {
+import {FC} from "react";
+import {IMovie} from "../../models/IMovie";
 
-    let {movies, isLoaded}=useAppSelector(state => state.movieSlice)
+const MoviesList: FC = () => {
+
+    let {isLoaded, movies}=useAppSelector(state => state.movieSlice)
 
     return (
         <div className={styles.mainDiv}>
             {
-                isLoaded? movies.map(movie => <MovieListCard key={movie.id} movie={movie}/>) : <div>loading ...</div>
+                isLoaded? movies?.map(movie => <MovieListCard key={movie.id} movie={movie}/>) : <div>loading ...</div>
             }
         </div>
     );

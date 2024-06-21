@@ -7,7 +7,6 @@ const genresService = {
     getGenres: async () => {
         try {
             const responce = await axiosInstance.get<IGenres>(urls.getGenres);
-            console.log(responce)
             return responce
         } catch (e) {
             const error = e as AxiosError;

@@ -7,7 +7,7 @@ import styles from './MoviesPage.module.css'
 
 const MoviesPage = () => {
 
-    const {currentPage, searchPage, movies, total_pages} = useAppSelector(state => state.movieSlice)
+    const {currentPage, currentSearchPage, movies, total_pages} = useAppSelector(state => state.movieSlice)
 
     let dispatch = useAppDispatch()
 
@@ -16,8 +16,8 @@ const MoviesPage = () => {
     }
 
     useEffect(() => {
-        dispatch(moviesActions.getAllMovies(searchPage || 1))
-    }, [searchPage]);
+        dispatch(moviesActions.getAllMovies(currentSearchPage || 1))
+    }, [currentSearchPage]);
     return (
         <div className={styles.MoviesPageDiv}>
             <div className={styles.paginDiv}>

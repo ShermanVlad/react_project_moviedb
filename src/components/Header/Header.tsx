@@ -8,9 +8,9 @@ const Header = () => {
 
     const navigate = useNavigate()
 
-    const setSearchWord = (request:string | null) => {
-        if(request) {
-            navigate(`/search/${request}`)
+    const setSearchWord = (query:string) => {
+        if(query) {
+            navigate(`/search/${query}`)
         }else{
             navigate('/movies')
         }

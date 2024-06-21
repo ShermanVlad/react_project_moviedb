@@ -1,24 +1,30 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
-import MoviesPage from "../moviesPage/MoviesPage";
 import styles from "../moviesPage/MoviesPage.module.css";
 import {Pagination} from "@mui/material";
-import MoviesList from "../../components/MoviesList/MoviesList";
+import MovieListCard from "../../components/MovieListCard/MovieListCard";
+import Loading from "../../components/Loading/Loading";
 
 const SearchedMoviesPage = () => {
-    const {value} = useParams()
+    const {query}= useParams()
 
     const dispatch = useAppDispatch()
 
-    const {searchMovies, currentSearchPage, currentPage, total_pages} = useAppSelector(state => state.movieSlice)
+    const {
+        searchMovies,
+        currentSearchPage,
+        total_pages
+    } = useAppSelector(state => state.movieSlice)
 
     useEffect(() => {
-        if (value) {
-            dispatch(moviesActions.searchedMovies({value, currentSearchPage}))
+        if (typeof query==="string") {
+            console.log('searchedMoviesPage useEffect VALUE: ',query);
+            console.log('searchedMoviesPage useEffect cSP: ',currentSearchPage);
+            dispatch(moviesActions.searchedMovies({query, currentSearchPage}))
         }
-    }, [currentSearchPage])
+    }, [currentSearchPage, query])
 
     const reloadPage = (page: number) => {
         dispatch(moviesActions.changeSearchPage(page))
@@ -27,32 +33,30 @@ const SearchedMoviesPage = () => {
     return (
         <div>
             <div className={styles.paginDiv}>
-                <Pagination page={currentPage}
-                            count={total_pages ? 500 : 1}
+                <Pagination page={currentSearchPage}
+                            count={total_pages ? total_pages : 1}
                             onChange={(_, page: number) => reloadPage(page)}
                             shape={"rounded"}
                             color={"primary"}
                 />
             </div>
-
-            {/*<div className={css.Search}>*/}
-            {/*    {searchMovies.length < 1 ?*/}
-            {/*        <img src="https://media.tenor.com/KOZLvzU0o4kAAAAC/no-results.gif"*/}
-            {/*             alt="No Results Found" className={css.NoResults}/>*/}
-            {/*        :*/}
-            {/*        searchMovies.map(movie => <Movie key={movie.id} movie={movie}/>)}*/}
-            {/*</div>*/}
-            <MoviesList></MoviesList>
+            <div>
+                {
+                    searchMovies.length > 0 ? searchMovies.map(movie => <MovieListCard key={movie.id} movie={movie}/>) :
+                        <Loading/>
+                }
+            </div>
             <div className={styles.paginDiv}>
-                <Pagination page={currentPage}
-                            count={total_pages ? 500 : 1}
+                <Pagination page={currentSearchPage}
+                            count={total_pages ? total_pages : 1}
                             onChange={(_, page: number) => reloadPage(page)}
                             shape={"rounded"}
                             color={"primary"}
                 />
             </div>
         </div>
-    );
+    )
+        ;
 };
 
 export default SearchedMoviesPage;

@@ -14,3 +14,12 @@ export interface IMovie{
     "vote_average": number,
     "vote_count": number
 }
+
+    // "adult": false,
+    // "backdrop_path": "/7U2m2dMSIfHx2gWXKq78Xj1weuH.jpg",
+    // "id": 1022790,
+    // "name": "Inside Out Collection",
+    // "original_language": "en",
+    // "original_name": "Inside Out Collection",
+    // "overview": "Collection of movies featuring various personified emotions.",
+    // "poster_path": "/Apr1

@@ -17,22 +17,28 @@ const moviesService = {
 
         return null
     },
-    getSearchedMovies: async (value: string | null, page: number = 1): Promise<IMoviePaginated | null> => {
+    getSearchedMovies: async (query: string, currentSearchPage: number): Promise<IMoviePaginated | null> => {
+        console.log('moviesService VALUE: ', query);
+        console.log('moviesService cSP: ', currentSearchPage);
         try {
-            const {data} = await axiosInstance.get<IMoviePaginated>(urls.getSearchedMovies, {params: {value, page}})
-            console.log('api service', data)
-            return data
+            const response = await axiosInstance.get<IMoviePaginated>(urls.getSearchedMovies, {
+                params: {
+                    query,
+                    currentSearchPage
+                }
+            })
+            console.log('moviesService response', response);
+            // return response
         } catch (e) {
             const error = e as AxiosError;
-            if (error){
-                console.log('something wrong with getting movies you search')
+            if (error) {
+                console.log('something wrong with getting movies you search', error)
             }
         }
 
         return null
     }
 }
-
-export {
-    moviesService
-}
+    export {
+        moviesService
+    }
