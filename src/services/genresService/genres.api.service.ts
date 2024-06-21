@@ -6,7 +6,8 @@ import {IGenres} from "../../models/IGenres";
 const genresService = {
     getGenres: async () => {
         try {
-            const responce = axiosInstance.get<IGenres>(urls.getGenres);
+            const responce = await axiosInstance.get<IGenres>(urls.getGenres);
+            console.log(responce)
             return responce
         } catch (e) {
             const error = e as AxiosError;

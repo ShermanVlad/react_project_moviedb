@@ -1,12 +1,10 @@
 import React, {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {useLocation, useParams} from "react-router";
-import {genresActions} from "../../redux/slices/genresSlice";
 import styles from './MovieInfo.module.css'
 import {Link} from 'react-router-dom';
-import {Rating} from "@mui/material";
-import GenreBadge from "../GenreBadge/GenreBadge";
 import StarsRating from "../StarsRating/StarsRating";
+import {moviesActions} from "../../redux/slices/moviesSlice";
 
 const MovieInfo: FC = () => {
 
@@ -23,13 +21,13 @@ const MovieInfo: FC = () => {
         }
     } = useLocation()
 
-    const {genres} = useAppSelector(state => state.genresSlice)
+    const {genres} = useAppSelector(state => state.movieSlice)
     const dispatch = useAppDispatch()
     const posterBaseURL = `https://image.tmdb.org/t/p/w300${poster_path}`
     const backdropBaseURL = `https://image.tmdb.org/t/p/w300${backdrop_path}`
 
     useEffect(() => {
-        dispatch(genresActions.getAllGenres())
+        dispatch(moviesActions.getAllGenres())
     }, [])
 
     const findMovieGenre = (id: number) => {
@@ -47,7 +45,7 @@ const MovieInfo: FC = () => {
                 <div className={styles.infoDiv}>
                     <h3>{title}</h3>
                     <div style={{display: 'flex'}}>
-                        <StarsRating rating={vote_average.toFixed(1)}/>{vote_average.toFixed(1)}
+                        <StarsRating rating={+vote_average.toFixed(1)}/>{vote_average.toFixed(1)}
                     </div>
                     <div className={styles.badgesDiv}>{
                         genre_ids?.map((id: number) => {

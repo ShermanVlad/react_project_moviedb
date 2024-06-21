@@ -5,7 +5,7 @@ import PosterPreview from "../PosterPreview/PosterPreview";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {Link, NavLink} from "react-router-dom";
 import GenreBadge from '../GenreBadge/GenreBadge';
-import {genresActions} from "../../redux/slices/genresSlice";
+import {moviesActions} from "../../redux/slices/moviesSlice";
 
 type IProps = {
     movie: IMovie;
@@ -15,11 +15,11 @@ const MovieListCard: FC<IProps> = ({movie}) => {
 
     const {id, poster_path,title, release_date, vote_average, genre_ids}=movie
 
-    const {genres}=useAppSelector(state => state.genresSlice)
+    const {genres}=useAppSelector(state => state.movieSlice)
 
     const dispatch=useAppDispatch()
     useEffect(() => {
-        dispatch(genresActions.getAllGenres())
+        dispatch(moviesActions.getAllGenres())
     }, []);
      const findMovieGenre = (id: number)=>{
             const movieGanre = genres.find(genre=>genre.id===id)
@@ -32,7 +32,9 @@ const MovieListCard: FC<IProps> = ({movie}) => {
             <Link to={`/movieInfo/${id}`} className={styles.link} state={{...movie}}>
             <div className={styles.genreBadgesDiv}>
                 {
-                    genre_ids.map(id=><NavLink to={`/movies/${id}`} style={{textDecoration: "none"}}><GenreBadge genre={findMovieGenre(id)} key={id}/></NavLink>)
+                    // genre_ids.map(id=> <Link to={`/movies/${id}`} style={{textDecoration: "none"}} key={id+1}><GenreBadge genre={findMovieGenre(id)} key={id}/></Link>)
+                    genre_ids.map(id=><GenreBadge genre={findMovieGenre(id)} key={id}/>)
+
                 }
             </div>
             <PosterPreview posterPath={poster_path} movieTitle={title}/>
